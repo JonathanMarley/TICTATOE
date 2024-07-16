@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="shortcut icon" href="{% static 'img/Fondo.jpg' %}" >
+    <meta name="author" content="Grupo#2">
+    <meta name="keywords" content="html,Tic Tac Toe">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div>
+        <div class="row" id="button-home-container">
+            <a href="{% url 'autenticacion:sign-up' %}">
+                <button class="blue-button">Registrarse</button>
+            </a>
+              
+            <a href="{% url 'menu:menu' %}">
+                <button class="red-button">Iniciar sesión</button>
+            </a>
+                        
+        </div>
+        
+        
+    
+</body>
+</html>
