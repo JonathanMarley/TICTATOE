@@ -11,14 +11,15 @@
     <meta name="author" content="Grupo#2">
     <meta name="keywords" content="html,Tic Tac Toe">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/password.js' %}"></script>
 </head>
 
 
 <body>
     <div>
         <div id="form-container">
-            <form id="form-registro" method="POST" action="">
-                
+            <form id="form-registro" method="POST" action="{% url 'autenticacion:sign-up' %}">
+                {% csrf_token %}
                 <div class="header-form">
                     <label style="margin-top: 10px; margin-bottom: 10px">REGISTRO</label>
                 </div>
@@ -36,7 +37,7 @@
                                 <input type="password" id="password" name="password1">
                             </div>
                             <div class="icon-container">
-                                <img src="{% static 'img/ojo.svg' %}" alt="Mostrar Contraseña" class="show-password" onclick="togglePasswordVisibility()">
+                                <img src="{% static 'img/ojo1.png' %}" alt="Mostrar Contraseña" class="show-password" onclick="togglePasswordVisibility()">
                             </div>
                         </div>
                     </div>
@@ -48,7 +49,7 @@
                                 <input type="password" id="confirmarContrasena" name="password2">
                             </div>
                             <div class="icon-container">
-                                <img src="{% static 'img/ojo.svg' %}" alt="Mostrar Contraseña" class="show-password2" onclick="togglePasswordVisibility2()">
+                                <img src="{% static 'img/ojo1.png' %}" alt="Mostrar Contraseña" class="show-password2" onclick="togglePasswordVisibility2()">
                             </div>
                         </div>
                     </div>
@@ -73,22 +74,7 @@
             </button>
             </a>
         </div>
-        <div class="row" id="button-logo-form">
-            <a href="">
-                <button class="logo-button" >
-                    <img src="" alt="logo_TicTacToe" width="80%">
-                </button>
-            </a>
-        </div>
-        <div class="row" id="container-info" style="margin-top: 18%">
-            <a href="">
-                <button class="green-button">
-                    <img src="{% static 'img/info.svg' %}" alt="Info" width="35" height="35">
-                </button>
-            </a>
-        </div>
     </div>
-  
     </div>
     
 </body>

@@ -231,7 +231,7 @@ a {
 .salir-button {
     width: 50px;
     height: 50px;
-    background-color: #DC4C22;
+    background-color: #3CC2FC;
     border: none;
     border-radius: 10px;
     color: white;
@@ -297,7 +297,7 @@ a {
     /* Centra los elementos horizontalmente */
     align-items: center;
     /* Centra los elementos verticalmente */
-    background-color: #0081c6be;
+    background-color: #3CC2FC;
     /* Color azul */
     padding: 20px;
     border-radius: 30px;
@@ -448,7 +448,7 @@ a {
 
 
 .red-button-registro {
-    background-color: #0081C6;
+    background-color: #3733FF;
     color: white;
     border: none;
     margin-left: 8%;
@@ -488,7 +488,7 @@ a {
 
 .registro-container button {
     /* Estilos del botón blue-button */
-    background-color: #0081C6;
+    background-color: #3733FF;
     color: white;
     border: none;
     border-radius: 20px;
@@ -548,7 +548,7 @@ a {
 
 /*Contenedor de principal de colores */
 .blue-container {
-    background-color: #D538FB;
+    background-color: #DA0087;
     /* Color azul */
     padding: 20px;
     border-radius: 30px;
@@ -576,7 +576,7 @@ a {
 }
 
 .grey-container {
-    background-color: #EFEFEF;
+    background-color: #FEBA05;
     /* Color azul */
     padding: 20px;
     border-radius: 30px;
@@ -596,7 +596,7 @@ a {
     margin-bottom: 20px;
     flex-direction: column;
     /* Cambiado a dirección vertical */
-    color: #000000;
+    color: white;
     border: 2px solid #0081C6;
 
 }
@@ -653,7 +653,7 @@ a {
     display: flex;
     top: 280px;
     right: 55px;
-    background-color: #0081C6;
+    background-color: #DA0087;
     padding: 15px;
     border-radius: 30px;
     color: #ffffff;
@@ -668,7 +668,7 @@ a {
     width: 200px;
     top: 450px;
     right: 50px;
-    background-color: #FFD100;
+    background-color: #3733FF;
     padding: 15px;
     border-radius: 30px;
     color: #ffffff;
@@ -841,7 +841,7 @@ hr {
 }
 
 .msg {
-    background-color: #D9D9D9;
+    background-color: white;
     border-radius: 10px;
     padding: 1px 1px 1px 10px; /* Ajusta el relleno según sea necesario */
     margin-bottom: 5px;
@@ -870,7 +870,7 @@ hr {
 .footer-chat input {
     flex: 1;
     margin-right: 10px;
-    background-color: white;
+    background-color:white;
     border: none;
     border-radius: 20px;
     font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -881,22 +881,22 @@ hr {
 
 .grey-container-chat {
     position: absolute;
-    top: 150px;
+    top: 170px;
     left: 15px;
-    background-color: #EFEFEF;
+    background-color: #3733FF;
     padding: 20px;
     border-radius: 30px;
-    width: 220px;
+    width: 250px;
     height: 300px;
-    color: #122A36;
-    border: 2px solid #0081C6;
+    color: black;
+    border: 2px solid #DA0087;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     display: flex;
     flex-direction: column;
 }
 
 .grey-container-info {
-    background-color: #EFEFEF;
+    background-color: white;
     /* Color azul */
     padding: 20px;
     border-radius: 30px;

@@ -21,15 +21,15 @@
                 <!-- Primer botón -->
                 <div class="button-wrapper">
                     <div class="content-wrapper">
-                        <img src="" alt="Organizar">
+                        <img src="{% static 'img/personas.png' %}" alt="Organizar">
                         <div class="text-button-wrapper">
                             <label for="organizar-privada">Organizar Privada</label>
                             <hr>
-                            <center>
-                                <a href="">
+                            <a href="">
+                                <a href="{% url 'partidas:crear_partida' %}">
                                     <button class="orange-button" id="organizar-privada"><span>Crear Partida</span></button>
                                 </a>
-                            </center>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                 <div class="button-wrapper">
                     <div class="content-wrapper">
 
-                        <img src="" alt="publica">
+                        <img src="{% static 'img/mundial.png' %}" alt="publica">
                         <div class="text-button-wrapper">
                             <label for="crear-partida">Pública</label>
                             <hr>
@@ -50,7 +50,7 @@
                 <!-- Tercer botón -->
                 <div class="button-wrapper">
                     <div class="content-wrapper">
-                        <img src="" alt="Descripción de la imagen 1">
+                        <img src="{% static 'img/promocion.png' %}" alt="Descripción de la imagen 1">
                         <div class="text-button-wrapper">
                             <label for="buscar-partida">Privada</label>
                             <hr>
@@ -66,58 +66,34 @@
         </div>
         <!-- Modifica tu actual sección de botones -->
         <div class="row" id="button-salir-container">
-            <a href="home.html">
+            <a href="{% url 'autenticacion:logout' %}">
                 <button class="salir-button">
-                    <img src="{% static 'img/Close.svg' %}" alt="Salir" width="35" height="35">
-                </button>
-            </a>
-        </div>  
-        <div class="row" id="button-logo-form">
-            <a href="menu.html">
-                <button class="logo-button">
-                    <img src="" alt="logo_TicTacToe" width="80%">
+                    <img src="{% static 'img/salir.png' %}" alt="Salir" width="35" height="35">
                 </button>
             </a>
         </div>
-        <div class="row" id="button-logo-form">
-            <div class="blue-container-logo">
-                <div>
-                    <center>
-                        <label>jmarley</label>
-                        <hr class="hr1">
-                        <img src="" alt="Copa" width="10%">
-                        <label>1200</label>
-                        <img src="" alt="Corona" width="10%" style="margin-left: 50px;">
-                        <label>5</label>
-                    </center>
-                </div>
-            </div>
-        </div>
-       
-    </div>
-
-    </div>
+        
+        
   
 </body>
 <div id="codigoModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
-        <label for="codigoInput" style="font-size: 25px;">Código</label>
-        <label for="codigoInput" style="font-size: 14px;">Ingrese el codigo de sala: </label>
-        <input type="text" id="codigoInput" name="codigoInput">
-        <div class="boton-con">
-            <button id="ingresarBtn">Ingresar</button>
-            <button id="cancelarBtn">Cancelar</button>
-        </div>
+        <form action="{% url 'partidas:entrar_partida' %}" method="POST">
+            {% csrf_token %}
+            <span class="close">&times;</span>
+            <label for="codigoInput" style="font-size: 25px;">Código</label>
+            <label for="codigoInput" style="font-size: 14px;">Ingrese el codigo de sala: </label>
+            <input type="text" id="codigoInput" name="codigo_partida">
+            <div class="boton-con">
+                <button id="ingresarBtn" type="submit">Ingresar</button>
+            </div>
+        </form>
     </div>
 </div>
 <script>
 
     // Get the modal element
     var codigoModal = document.getElementById("codigoModal");
-
-    // Get the button that opens the modal
-    var codigoButton = document.getElementById("codigo");
 
     // Get the <span> element that closes the modal
     var closeSpan = document.getElementsByClassName("close")[0];
@@ -145,5 +121,6 @@
     }
 
 </script>
+
 
 </html>

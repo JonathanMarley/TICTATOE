@@ -4,10 +4,10 @@ function togglePasswordVisibility() {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        showPasswordIcon.src = "../img/ocultarPass.svg";
+        showPasswordIcon.src = "./img/ojo1.png";
     } else {
         passwordInput.type = "password";
-        showPasswordIcon.src = "../img/mostrarPass.svg";
+        showPasswordIcon.src = "../img/ojo.png";
     }
 }
 
@@ -18,9 +18,9 @@ function togglePasswordVisibility2() {
 
     if (passwordInput.type === "password") {
         passwordInput.type = "text";
-        showPasswordIcon.src = "../img/ocultarPass.svg";
+        showPasswordIcon.src = "../img/ojo1.png";
     } else {
         passwordInput.type = "password";
-        showPasswordIcon.src = "../img/mostrarPass.svg";
+        showPasswordIcon.src = "../img/ojo.png";
     }
 }

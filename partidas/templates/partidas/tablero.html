@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Partida - Tic Tac Toe</title>
-    <link rel="shortcut icon" href="img/LogoTicTacToe.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/Fondo.jpg' %}" >
     <meta name="author" content="Grupo#2">
     <meta name="keywords" content="html,Tic Tac Toe">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="{% static 'img/Close.svg' %}"></script>
     <script defer src="{% static 'js/partida.js' %}"></script>
-    <style>
+     <style>
         /* Estilos para la barra de navegación */
         nav {
             background-color: white;
@@ -113,25 +113,52 @@
     </div>
     <nav>
         <div class="center-content">
-            <img src=".{% static 'img/x.svg' %}" alt="Icono jugador 1">
-            <label id="jugador1">jmarley</label>
+            <img src="{% static 'img/x.svg' %}" alt="Icono jugador 1">
+            <label id="jugador1">{{ partida.jugador_x.username }}</label>
             <div id="separator"></div>
-            <label id="jugador2">ibarahona</label>
+            <label id="jugador2">{{ partida.jugador_0.username }}</label>
             <img id="icono2" src="{% static 'img/o.svg' %}" alt="Icono jugador 2">
         </div>
     </nav>
 
     <div id="ticTacToeContainer">
         <div id="ticTacToe">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+            <div id="1" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'images/o.svg' %}" alt="0"/>
+            </div>
+            <div id="2" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'images/o.svg' %}" alt="0"/>
+            </div>
+            <div id="3" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
+            </div>
+            <div id="4" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
+            </div>
+            <div id="5" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
+            </div>
+            <div id="6" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
+            </div>
+            <div id="7" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
+            </div>
+            <div id="8" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
+            </div>
+            <div id="9" class="cell">
+                <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
+            </div>
         </div>
     </div>
 </body>

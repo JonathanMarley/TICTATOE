@@ -21,6 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-r$w6d09*fnx5jhujkl(9u#95ponwrnzn*3_%io9)umkyk@w35k'
@@ -39,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',
     'django.contrib.staticfiles',
+    'channels',
     'autenticacion',
     'home',
     'menu',
@@ -76,17 +80,33 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'tictactoe.wsgi.application'
+ASGI_APPLICATION = 'tictactoe.asgi.application'
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+    },
+}
 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "mydatabase",
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'TICTACTOE1BD',
+        'USER': 'UserTictactoe',
+        'PASSWORD': 'Tictactoe',
+        'HOST': '108.181.197.179',  # Set to the host where your MySQL server is running
+        'PORT': '10082',  # Default MySQL port
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
+
 
 
 # Password validation
@@ -106,6 +126,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'autenticacion.JugadorAuth'
 
 
 # Internationalization
