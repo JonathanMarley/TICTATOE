@@ -6,7 +6,7 @@ from .models import Mensaje, Partida
 
 User = get_user_model()
 
-#PartidaRoom
+#============PartidaRoom=============
 class PartidaRoomConsumer(AsyncWebsocketConsumer):
 
     async def connect(self):
@@ -21,12 +21,14 @@ class PartidaRoomConsumer(AsyncWebsocketConsumer):
     async def disconnect(self, code):
         pass
 
+    #==========Mandar mensajes=============
     @database_sync_to_async
     def crear_mensaje(self, data):
         partida = Partida.objects.get(codigo_partida=data.get('codigo'))
         usuario = User.objects.get(username=data.get('usuario'))
         return Mensaje.objects.create(mensaje=data.get('mensaje'), partida=partida, enviado_por=usuario)
 
+    #==================Asignacion de jugadores============
     @database_sync_to_async
     def asignar_jugador(self, data):
         codigo_partida = data.get('codigo')
@@ -234,6 +236,37 @@ class PartidaConsumer(AsyncWebsocketConsumer):
                 'message': json.dumps(nuevas_pos),
             }
         )
+
+    async def send_user_update(self, event):
+        # Send the message to the WebSocket
+        await self.send(text_data=event['message'])
+
+
+class BuscandoConsumer(AsyncWebsocketConsumer):
+
+    async def connect(self):
+        self.pk = self.scope['url_route']['kwargs']['pk']
+        self.room_group_name = f"buscando_{self.pk}"
+        await self.channel_layer.group_add(
+            self.room_group_name,
+            self.channel_name
+        )
+        await self.accept()
+
+    async def disconnect(self, code):
+        pass
+
+    async def receive(self, text_data=None):
+        text_data_json = json.loads(text_data)
+        unido = text_data_json.get('unido')
+        if unido:
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'send_user_update',
+                    'message': json.dumps({'redirigir': True}),
+                }
+            )
 
     async def send_user_update(self, event):
         # Send the message to the WebSocket

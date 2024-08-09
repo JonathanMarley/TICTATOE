@@ -132,21 +132,21 @@
         <div class="content">
             <div class="player-container">
                 <div class="pulsar" id="jugador1" class="row" style="margin-bottom: 5%;">
-                    <label>Jugador 1:</label>
+                   <label>{{ jugador_ganador }}:</label>
                     <img src="{% static 'img/copa.png' %}" alt="Icono Jugador 1" class="player-icon">
-                    <label class="points" id="puntosJugador1">+ 700 puntos</label>
+                    <label class="points" id="puntosJugador1">+ 300 puntos</label>
                 </div>
                 <div class="pulsar" id="jugador2" class="row">
                     <label>Jugador 2:</label>
                     <img src="{% static 'img/plata.png' %}" alt="Icono Jugador 2" class="player-icon">
-                    <label class="points" id="puntosJugador2">+ 300 puntos</label>
+                    <label class="points" id="puntosJugador2">+ 100 puntos</label>
                 </div>
             </div>
         </div>
     </div>
     <div class="pulsar corona-container">
         <img src="{% static 'img/cinta.png' %}" alt="Corona" class="coronaIcon">
-        <label id="jugadorGanador">¡Jugador 1 es el ganador!</label>
+        <label id="jugadorGanador">¡{{ jugador_ganador }} es el ganador!</label>
     </div>
     
     <script>

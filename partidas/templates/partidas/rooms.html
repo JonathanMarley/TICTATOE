@@ -94,6 +94,75 @@
         </div>
     </div>
 
+ <script>
+        let socket;
+
+        const codigo = document.querySelector('#codigo')
+        const usuario = document.querySelector('#username')
+        const jugador_x =  document.querySelector('#jugador_x')
+        const jugador_0 =  document.querySelector('#jugador_0')
+        const pk = document.querySelector('#pk')
+        const enviar = document.querySelector('#enviar')
+        const mensaje = document.querySelector('#mensaje')
+        const chat_cont = document.querySelector('.chat-cont')
+        const play = document.querySelector('.play-button')
+        const contadores = document.querySelector('#organizar-privada')
+
+        document.addEventListener('DOMContentLoaded', () => {
+            socket = new WebSocket('wss://www.tictactoe.tictactoe2.com/ws/partida/' + pk.textContent)
+
+            socket.onopen = function () {
+                socket.send(JSON.stringify({tipo: 'unirse', codigo: codigo.textContent, usuario: usuario.textContent}))
+            };
+
+            socket.onmessage = function (event) {
+                const data = JSON.parse(event.data);
+
+                switch(data.tipo){
+                    case 'usuario_unido':
+                        jugador_x.textContent = data.jugador_x ? data.jugador_x : 'Esperando Jugador...'
+                        jugador_0.textContent = data.jugador_0 ? data.jugador_0 : 'Esperando Jugador...'
+                        if (data.jugador_x && data.jugador_0){
+                            contadores.textContent = 'Jugadores 2/2'
+                        }
+                        break
+                    case 'mensaje':
+                        const msgDiv = document.createElement('div');
+                        msgDiv.className = 'msg';
+                        const msgTexto = document.createElement('p');
+                        msgTexto.textContent = data.mensaje;
+                        msgDiv.appendChild(msgTexto);
+                        chat_cont.appendChild(msgDiv);
+                        break
+                    case 'usuario_abandono':
+                        jugador_x.textContent = data.jugador_x ? data.jugador_x : 'Esperando Jugador...'
+                        jugador_0.textContent = data.jugador_0 ? data.jugador_0 : 'Esperando Jugador...'
+                        break
+                    default:
+                        window.location.pathname = '/partidas/jugar/' + pk.textContent
+                        break
+                }
+            };
+
+            socket.onclose = function (event) {
+                console.log('WebSocket connection closed:', event);
+            };
+
+            //  window.addEventListener('beforeunload', () => {
+            //     socket.send(JSON.stringify({ tipo: 'abandonar', codigo: codigo.textContent, usuario: usuario.textContent }));
+            // });
+        });
+
+        enviar.addEventListener('click', () => {
+            socket.send(JSON.stringify({tipo: 'mensaje', codigo: codigo.textContent, mensaje: mensaje.value, 'usuario': usuario.textContent}))
+            mensaje.value = ''
+        })
+
+        play.addEventListener('click', () => {
+            socket.send(JSON.stringify({tipo: 'iniciar'}))
+        })
+    </script>
+
   
     
 </body>

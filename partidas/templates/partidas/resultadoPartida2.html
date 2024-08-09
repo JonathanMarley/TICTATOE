@@ -132,14 +132,14 @@
         <div class="content">
             <div class="player-container">
                 <div class="pulsar" id="jugador1" class="row" style="margin-bottom: 5%;">
-                    <label>Jugador 1:</label>
+                    <label>{{ partida.jugador_x.username }}</label>
                     <img src="{% static 'img/1.png' %}" alt="Icono Jugador 1" class="player-icon">
                     <label class="points" id="puntosJugador1">+ 700 puntos</label>
                 </div>
                 <div class="pulsar" id="jugador2" class="row">
-                    <label>Jugador 2:</label>
+                    <label>{{ partida.jugador_0.username }}</label>
                     <img src="{% static 'img/1.png' %}" alt="Icono Jugador 2" class="player-icon">
-                    <label class="points" id="puntosJugador2">+ 700 puntos</label>
+                    <label class="points" id="puntosJugador2">+ 200 puntos</label>
                 </div>
             </div>
         </div>
@@ -148,10 +148,12 @@
         <label id="jugadorGanador">¡UHHH, ES UN EMPATE !</label>
     </div>
     
-    <script>
+     <script>
         // Ejecutar addConfetti al cargar la página
         const jsConfetti = new JSConfetti();
-        jsConfetti.addConfetti();
+        jsConfetti.addConfetti({
+            emojis: ['⭕', '✖️'],
+        });
     </script>
 </body>
 

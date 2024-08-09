@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script defer src="{% static 'img/Close.svg' %}"></script>
     <script defer src="{% static 'js/partida.js' %}"></script>
+
      <style>
         /* Estilos para la barra de navegación */
         nav {
@@ -104,6 +105,9 @@
 </head>
 
 <body>
+<span id="pk" class="hidden">{{ partida.pk }}</span>
+    <span id="username" class="hidden">{{ user.username }}</span>
+    <span id="jugador_actual_username" class="hidden">{{ jugador_actual_username }}</span>
     <div class="row" id="button-back-container">
         <a href="menu.html">
             <button class="back-button">
@@ -161,6 +165,20 @@
             </div>
         </div>
     </div>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/66b557240cca4f8a7a738312/1i4q5opkt';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
+<script defer src="{% static 'js/partida.js' %}"></script>
 </body>
 
 </html>

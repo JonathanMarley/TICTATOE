@@ -6,5 +6,5 @@ from .consumers import *
 websocket_urlpatterns = [
     path('ws/partidas/jugar/<int:pk>', PartidaConsumer.as_asgi()),
     path('ws/partida/<int:pk>', PartidaRoomConsumer.as_asgi()),
-   
+    path('ws/partida/buscando/<int:pk>', BuscandoConsumer.as_asgi()),
 ]

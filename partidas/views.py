@@ -30,6 +30,16 @@ class UnirseAPartida(View):
         context = {'partida': partida, 'user': request.user}
         return render(request, self.template_name, context=context)
 
+class Partidas(View):
+
+    template_name = 'partidas/rooms.html'
+
+    def get(self, request):
+        partidas = Partida.objects.filter(partida_privada=False)
+        context = {'partidas': partidas}
+        return render(request, self.template_name, context=context)
+
+
 class Jugar(View):
 
     template_name = 'partidas/tablero.html'
@@ -41,6 +51,65 @@ class Jugar(View):
         context = {'partida': partida, 'tablero': tablero, 'user': user, 'jugador_actual_username': partida.jugador_x.username}
         return render(request, self.template_name, context=context)
 
+
+class Gane(View):
+    template_name = 'partidas/resultado.html'
+
+    def get(self, request, pk):
+        partida = Partida.objects.get(pk=pk)
+        context = {}
+
+        # Assuming you have a ForeignKey between User and Record
+        jugador_x_record = partida.jugador_x.record.first()  # Use .first() to get the first related record
+        jugador_0_record = partida.jugador_0.record.first()
+
+        if jugador_x_record and jugador_0_record:
+            if partida.jugador_x == partida.jugador_ganador:
+                jugador_x_record.puntos += 300
+                jugador_x_record.ganes += 1
+                jugador_x_record.save()
+                jugador_0_record.puntos += 100
+                jugador_0_record.perdidas += 1
+                jugador_0_record.save()
+                context['jugador_ganador'] = partida.jugador_x.username
+                context['jugador_perdedor'] = partida.jugador_0.username
+            else:
+                jugador_0_record.puntos += 300
+                jugador_0_record.ganes += 1
+                jugador_0_record.save()
+                jugador_x_record.puntos += 100
+                jugador_x_record.perdidas += 1
+                jugador_x_record.save()
+                context['jugador_ganador'] = partida.jugador_0.username
+                context['jugador_perdedor'] = partida.jugador_x.username
+        partida.estado = False
+        partida.save()
+
+        return render(request, self.template_name, context=context)
+
+class Empate(View):
+    template_name = 'partidas/resultadoPartida2.html'
+
+    def get(self, request, pk):
+        partida = Partida.objects.get(pk=pk)
+        context = {'partida': partida}
+
+        # Assuming you have a ForeignKey between User and Record
+        jugador_x_record = partida.jugador_x.record.first()  # Use .first() to get the first related record
+        jugador_0_record = partida.jugador_0.record.first()
+
+        if jugador_x_record and jugador_0_record:
+            jugador_x_record.puntos += 200
+            jugador_x_record.empates += 1
+            jugador_x_record.save()
+            jugador_0_record.puntos += 200
+            jugador_0_record.empates += 1
+            jugador_0_record.save()
+
+        partida.estado = False
+        partida.save()
+        return render(request, self.template_name, context=context)
+
 class Partidas(View):
 
     template_name = 'partidas/tablero.html'
@@ -48,23 +117,3 @@ class Partidas(View):
     def get(self, request):
         return render(request, self.template_name)
 
-class Resultado(View):
-
-    template_name = 'partidas/resultado.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
-
-class ResultadoPartida(View):
-
-    template_name = 'partidas/resultadoPartida2.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
-
-class Rooms(View):
-
-    template_name = 'partidas/rooms.html'
-
-    def get(self, request):
-        return render(request, self.template_name)
