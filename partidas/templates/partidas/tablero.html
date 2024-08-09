@@ -109,7 +109,7 @@
     <span id="username" class="hidden">{{ user.username }}</span>
     <span id="jugador_actual_username" class="hidden">{{ jugador_actual_username }}</span>
     <div class="row" id="button-back-container">
-        <a href="menu.html">
+        <a href="{% url 'menu:menu' %}">
             <button class="back-button">
                 <img src="{% static 'img/Close.svg' %}" alt="Regresar" width="100%">
             </button>
@@ -129,11 +129,11 @@
         <div id="ticTacToe">
             <div id="1" class="cell">
                 <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
-                <img class="o hidden" src="{% static 'images/o.svg' %}" alt="0"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
             </div>
             <div id="2" class="cell">
                 <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
-                <img class="o hidden" src="{% static 'images/o.svg' %}" alt="0"/>
+                <img class="o hidden" src="{% static 'img/o.svg' %}" alt="0"/>
             </div>
             <div id="3" class="cell">
                 <img class="x hidden" src="{% static 'img/x.svg' %}" alt="X"/>
@@ -171,12 +171,13 @@
     (function(){
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
     s1.async=true;
-    s1.src='https://embed.tawk.to/66b557240cca4f8a7a738312/1i4q5opkt';
+    s1.src='https://embed.tawk.to/66b657a6146b7af4a4386254/1i4s4cosp';
     s1.charset='UTF-8';
     s1.setAttribute('crossorigin','*');
     s0.parentNode.insertBefore(s1,s0);
     })();
 </script>
+<!--End of Tawk.to Script-->
 <!--End of Tawk.to Script-->
 <script defer src="{% static 'js/partida.js' %}"></script>
 </body>

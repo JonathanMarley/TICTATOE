@@ -1,9 +1,9 @@
-from django.urls import path, include
-from .views import *
+from django.urls import path
+from .views import Estadisticas
 
 # Define your urls here.
 app_name = 'stats'
 
 urlpatterns = [
-    path('estadisticas', Estadisticas.as_view(), name='estadisticas')
+    path('', Estadisticas.as_view(), name='stats')
 ]
